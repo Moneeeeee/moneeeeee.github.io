@@ -20,24 +20,19 @@
     var CONFIG = {"hostname":"moneeeeee.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="新建文章： hexo new &lt;title&gt;  &#x2F;source&#x2F;_posts&#96;目录下创建一篇新的文章 接下来在这篇文章里使用 MarkDown 语法编写文章即可    Front-matter  使用---包括起来的内容称之为Front-matte          配置项 意义    title 网页文章标题   date 文章创建如期   commen">
+  <meta name="description" content="STM32F4时钟问题  在配置USART时，baud配置为115200，通信乱码。经过测试，实际为38400.  TIM的频率和周期明显不符合设想配置   一般这种就是时钟有问题，通过 1234567RCC_ClocksTypeDef Get_RCC_Clocks;&#x2F;&#x2F;全局变量  RCC_GetClocksFreq(&amp;Get_RCC_Clocks);printf(&quot;SYSCLK">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HowtoCreateAPages">
-<meta property="og:url" content="https://moneeeeee.github.io/2024/02/29/HowtoCreateAPages/index.html">
+<meta property="og:title" content="STM32F4时钟问题">
+<meta property="og:url" content="https://moneeeeee.github.io/2024/02/29/STM32F4%E6%97%B6%E9%92%9F%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="电子仓鼠">
-<meta property="og:description" content="新建文章： hexo new &lt;title&gt;  &#x2F;source&#x2F;_posts&#96;目录下创建一篇新的文章 接下来在这篇文章里使用 MarkDown 语法编写文章即可    Front-matter  使用---包括起来的内容称之为Front-matte          配置项 意义    title 网页文章标题   date 文章创建如期   commen">
+<meta property="og:description" content="STM32F4时钟问题  在配置USART时，baud配置为115200，通信乱码。经过测试，实际为38400.  TIM的频率和周期明显不符合设想配置   一般这种就是时钟有问题，通过 1234567RCC_ClocksTypeDef Get_RCC_Clocks;&#x2F;&#x2F;全局变量  RCC_GetClocksFreq(&amp;Get_RCC_Clocks);printf(&quot;SYSCLK">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://moneeeeee.github.io/2024/02/29/HowtoCreateAPages/image-20240229214847031.png">
-<meta property="og:image" content="https://moneeeeee.github.io/2024/02/29/HowtoCreateAPages/image-20240229215110698.png">
-<meta property="og:image" content="https://moneeeeee.github.io/2024/02/29/HowtoCreateAPages/image-20240229215216054.png">
-<meta property="article:published_time" content="2024-02-29T13:41:42.000Z">
-<meta property="article:modified_time" content="2024-02-29T13:54:29.607Z">
+<meta property="article:published_time" content="2024-02-29T14:07:07.000Z">
+<meta property="article:modified_time" content="2024-02-29T14:07:26.240Z">
 <meta property="article:author" content="泉水">
-<meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://moneeeeee.github.io/2024/02/29/HowtoCreateAPages/image-20240229214847031.png">
 
-<link rel="canonical" href="https://moneeeeee.github.io/2024/02/29/HowtoCreateAPages/">
+<link rel="canonical" href="https://moneeeeee.github.io/2024/02/29/STM32F4%E6%97%B6%E9%92%9F%E9%97%AE%E9%A2%98/">
 
 
 <script id="page-configurations">
@@ -50,7 +45,7 @@
   };
 </script>
 
-  <title>HowtoCreateAPages | 电子仓鼠</title>
+  <title>STM32F4时钟问题 | 电子仓鼠</title>
   
 
 
@@ -180,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://moneeeeee.github.io/2024/02/29/HowtoCreateAPages/">
+    <link itemprop="mainEntityOfPage" href="https://moneeeeee.github.io/2024/02/29/STM32F4%E6%97%B6%E9%92%9F%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar_main.jpg">
@@ -193,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          HowtoCreateAPages
+          STM32F4时钟问题
         </h1>
 
         <div class="post-meta">
@@ -204,16 +199,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-02-29 21:41:42 / 修改时间：21:54:29" itemprop="dateCreated datePublished" datetime="2024-02-29T21:41:42+08:00">2024-02-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Help/" itemprop="url" rel="index"><span itemprop="name">Help</span></a>
-                </span>
+              <time title="创建时间：2024-02-29 22:07:07 / 修改时间：22:07:26" itemprop="dateCreated datePublished" datetime="2024-02-29T22:07:07+08:00">2024-02-29</time>
             </span>
 
           
@@ -227,94 +213,71 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
-<li><p>新建文章：</p>
-<p><code>hexo new &lt;title&gt;</code></p>
-<blockquote>
-<p>&#x2F;source&#x2F;_posts&#96;目录下创建一篇新的文章</p>
-<p>接下来在这篇文章里使用 MarkDown 语法编写文章即可</p>
-</blockquote>
-</li>
-<li><ul>
-<li><p><strong>Front-matter</strong></p>
-<blockquote>
-<p>使用<code>---</code>包括起来的内容称之为<code>Front-matte</code></p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/02/29/HowtoCreateAPages/image-20240229214847031.png" alt="image-20240229214847031"></p>
-<table>
-<thead>
-<tr>
-<th align="left">配置项</th>
-<th align="left">意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">title</td>
-<td align="left">网页文章标题</td>
-</tr>
-<tr>
-<td align="left">date</td>
-<td align="left">文章创建如期</td>
-</tr>
-<tr>
-<td align="left">comments</td>
-<td align="left">文章评论功能是否启动</td>
-</tr>
-<tr>
-<td align="left">tags</td>
-<td align="left">文章标签</td>
-</tr>
-<tr>
-<td align="left">categories</td>
-<td align="left">文章分类</td>
-</tr>
-<tr>
-<td align="left">keywords</td>
-<td align="left">文章关键字</td>
-</tr>
-</tbody></table>
-<p><img src="/2024/02/29/HowtoCreateAPages/image-20240229215110698.png" alt="image-20240229215110698"></p>
+        <p>STM32F4时钟问题</p>
 <ul>
-<li><p>清除掉旧的数据:</p>
-<p><code>hexo clean</code></p>
-<blockquote>
-<p>清除掉之前生成的网页，即站点根目录下的<code>public</code>文件夹</p>
-</blockquote>
+<li><p>在配置USART时，baud配置为115200，通信乱码。经过测试，实际为38400.</p>
 </li>
-<li><p>生成新的页面：</p>
-<p><code>hexo g</code></p>
-<blockquote>
-<p>将<code>source</code>文件夹下所有的md文件进行渲染，生成HTML页面，存放在<code>public</code>文件夹下</p>
-</blockquote>
+<li><p>TIM的频率和周期明显不符合设想配置</p>
 </li>
-<li><p>部署到云端:</p>
-<p><code>hexo d</code></p>
-<blockquote>
-<p>发布到moneeeeee.github.io</p>
-</blockquote>
+</ul>
+<p>一般这种就是时钟有问题，通过</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RCC_ClocksTypeDef Get_RCC_Clocks;<span class="comment">//全局变量  </span></span><br><span class="line"></span><br><span class="line">RCC_GetClocksFreq(&amp;Get_RCC_Clocks);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;SYSCLK : %lu\n&quot;</span>,Get_RCC_Clocks.HCLK_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;HCLK_Frequency : %lu\n&quot;</span>,Get_RCC_Clocks.HCLK_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;PCLK1_Frequency : %lu\n&quot;</span>,Get_RCC_Clocks.PCLK1_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;PCLK2_Frequency : %lu\n&quot;</span>,Get_RCC_Clocks.PCLK2_Frequency);</span><br></pre></td></tr></table></figure>
+
+<p>打印出时钟频率为</p>
+<p>SYSCLK : 53760000</p>
+<p>HCLK_Frequency : 53760000</p>
+<p>PCLK1_Frequency : 13440000</p>
+<p>PCLK2_Frequency : 26880000</p>
+<p>很明显与默认的168M不符</p>
+<p>经过查询和翻库，得到解决办法：</p>
+<ul>
+<li><p>文件：stm32f4xx.h</p>
+</li>
+<li><pre><code class="c">#define HSE_VALUE    ((uint32_t)25000000) /*!&lt; Value of the External oscillator in Hz */
+
+--------&gt;
+
+#define HSE_VALUE    ((uint32_t)8000000) /*!&lt; Value of the External oscillator in Hz */
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">改变默认HSE为实际HSE，开发板上的外部晶振是8.0000M</span><br><span class="line"></span><br><span class="line">- 文件：system_stmf4xx.c</span><br><span class="line"></span><br><span class="line">- ```c</span><br><span class="line">  /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */</span><br><span class="line">   #define PLL_M      25</span><br><span class="line">  </span><br><span class="line">  ---------&gt;</span><br><span class="line">  </span><br><span class="line">  /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */</span><br><span class="line">   #define PLL_M      8</span><br></pre></td></tr></table></figure>
+</code></pre>
 </li>
 </ul>
 <hr>
+<p>2024&#x2F;2&#x2F;22</p>
+<p>泉水</p>
+<hr>
+<p>STM32F4 Clock Issue</p>
 <ul>
-<li><p>上传图片:直接粘贴图片,然后使用<code>&lt;C-f&gt;</code>快捷键，将所有的<code>文章名/</code>替换为空即可删除</p>
-<blockquote>
-<p>然后再将博客上传，图片就会随着文章一起打包。在网页中就可以看到正常显示的图片，大功告成。</p>
-</blockquote>
+<li><p>When configuring USART, the baud rate is set to 115200, but communication results in garbled data. Upon testing, the actual baud rate is found to be 38400.</p>
+</li>
+<li><p>The frequency and period of TIM are significantly different from the intended configuration.</p>
 </li>
 </ul>
-<p><img src="/2024/02/29/HowtoCreateAPages/image-20240229215216054.png" alt="image-20240229215216054"></p>
+<p>Usually, such issues arise due to clock problems. By using the following code snippet:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RCC_ClocksTypeDef Get_RCC_Clocks; <span class="comment">// Global variable</span></span><br><span class="line"></span><br><span class="line">RCC_GetClocksFreq(&amp;Get_RCC_Clocks);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;SYSCLK : %lu\n&quot;</span>, Get_RCC_Clocks.HCLK_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;HCLK_Frequency : %lu\n&quot;</span>, Get_RCC_Clocks.HCLK_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;PCLK1_Frequency : %lu\n&quot;</span>, Get_RCC_Clocks.PCLK1_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;PCLK2_Frequency : %lu\n&quot;</span>, Get_RCC_Clocks.PCLK2_Frequency);</span><br></pre></td></tr></table></figure>
+
+<p>Clock frequencies are printed as:</p>
+<p>SYSCLK : 53760000</p>
+<p>HCLK_Frequency : 53760000</p>
+<p>PCLK1_Frequency : 13440000</p>
+<p>PCLK2_Frequency : 26880000</p>
+<p>It is evident that they do not match the default 168MHz.</p>
+<p>After research and consulting the library, the solution is obtained:</p>
+<ul>
+<li><p>File: stm32f4xx.h</p>
+</li>
+<li><pre><code class="c">#define HSE_VALUE    ((uint32_t)25000000) /*!&lt; Value of the External oscillator in Hz */
+
+--------&gt;
+
+#define HSE_VALUE    ((uint32_t)8000000) /*!&lt; Value of the External oscillator in Hz */
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Changing the default HSE to the actual HSE, where the external crystal on the development board is 8.0000M.</span><br><span class="line"></span><br><span class="line">- File: system_stmf4xx.c</span><br><span class="line"></span><br><span class="line">- ```c</span><br><span class="line">  /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */</span><br><span class="line">  #define PLL_M      25</span><br><span class="line">  </span><br><span class="line">  ---------&gt;</span><br><span class="line">  </span><br><span class="line">  /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */</span><br><span class="line">  #define PLL_M      8</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
 <hr>
-<p>为了方便，可以在<code>scaffolds -&gt; post</code>中添加如下设置。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">typora-root-url:</span> &#123;&#123; <span class="string">title</span> &#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样每次执行hexo new命令新建文章的时候，会在Front Matter中自动添加该配置，如下：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typora-root-url: hexo图片显示问题</span><br></pre></td></tr></table></figure>
-
-<p>至此，在本地和服务器的图片都能正常预览。</p>
+<p>2024&#x2F;2&#x2F;22</p>
+<p>泉水</p>
 
     </div>
 
@@ -323,20 +286,17 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-          </div>
 
         
 
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2024/02/29/STM32F4%E6%97%B6%E9%92%9F%E9%97%AE%E9%A2%98/" rel="next" title="STM32F4时钟问题">
-      STM32F4时钟问题 <i class="fa fa-chevron-right"></i>
+    <a href="/2024/02/29/HowtoCreateAPages/" rel="prev" title="HowtoCreateAPages">
+      <i class="fa fa-chevron-left"></i> HowtoCreateAPages
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     

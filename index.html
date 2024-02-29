@@ -170,6 +170,129 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://moneeeeee.github.io/2024/02/29/STM32F4%E6%97%B6%E9%92%9F%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar_main.jpg">
+      <meta itemprop="name" content="泉水">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="电子仓鼠">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/02/29/STM32F4%E6%97%B6%E9%92%9F%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">STM32F4时钟问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-02-29 22:07:07 / 修改时间：22:07:26" itemprop="dateCreated datePublished" datetime="2024-02-29T22:07:07+08:00">2024-02-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>STM32F4时钟问题</p>
+<ul>
+<li><p>在配置USART时，baud配置为115200，通信乱码。经过测试，实际为38400.</p>
+</li>
+<li><p>TIM的频率和周期明显不符合设想配置</p>
+</li>
+</ul>
+<p>一般这种就是时钟有问题，通过</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RCC_ClocksTypeDef Get_RCC_Clocks;<span class="comment">//全局变量  </span></span><br><span class="line"></span><br><span class="line">RCC_GetClocksFreq(&amp;Get_RCC_Clocks);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;SYSCLK : %lu\n&quot;</span>,Get_RCC_Clocks.HCLK_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;HCLK_Frequency : %lu\n&quot;</span>,Get_RCC_Clocks.HCLK_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;PCLK1_Frequency : %lu\n&quot;</span>,Get_RCC_Clocks.PCLK1_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;PCLK2_Frequency : %lu\n&quot;</span>,Get_RCC_Clocks.PCLK2_Frequency);</span><br></pre></td></tr></table></figure>
+
+<p>打印出时钟频率为</p>
+<p>SYSCLK : 53760000</p>
+<p>HCLK_Frequency : 53760000</p>
+<p>PCLK1_Frequency : 13440000</p>
+<p>PCLK2_Frequency : 26880000</p>
+<p>很明显与默认的168M不符</p>
+<p>经过查询和翻库，得到解决办法：</p>
+<ul>
+<li><p>文件：stm32f4xx.h</p>
+</li>
+<li><pre><code class="c">#define HSE_VALUE    ((uint32_t)25000000) /*!&lt; Value of the External oscillator in Hz */
+
+--------&gt;
+
+#define HSE_VALUE    ((uint32_t)8000000) /*!&lt; Value of the External oscillator in Hz */
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">改变默认HSE为实际HSE，开发板上的外部晶振是8.0000M</span><br><span class="line"></span><br><span class="line">- 文件：system_stmf4xx.c</span><br><span class="line"></span><br><span class="line">- ```c</span><br><span class="line">  /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */</span><br><span class="line">   #define PLL_M      25</span><br><span class="line">  </span><br><span class="line">  ---------&gt;</span><br><span class="line">  </span><br><span class="line">  /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */</span><br><span class="line">   #define PLL_M      8</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<hr>
+<p>2024&#x2F;2&#x2F;22</p>
+<p>泉水</p>
+<hr>
+<p>STM32F4 Clock Issue</p>
+<ul>
+<li><p>When configuring USART, the baud rate is set to 115200, but communication results in garbled data. Upon testing, the actual baud rate is found to be 38400.</p>
+</li>
+<li><p>The frequency and period of TIM are significantly different from the intended configuration.</p>
+</li>
+</ul>
+<p>Usually, such issues arise due to clock problems. By using the following code snippet:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RCC_ClocksTypeDef Get_RCC_Clocks; <span class="comment">// Global variable</span></span><br><span class="line"></span><br><span class="line">RCC_GetClocksFreq(&amp;Get_RCC_Clocks);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;SYSCLK : %lu\n&quot;</span>, Get_RCC_Clocks.HCLK_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;HCLK_Frequency : %lu\n&quot;</span>, Get_RCC_Clocks.HCLK_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;PCLK1_Frequency : %lu\n&quot;</span>, Get_RCC_Clocks.PCLK1_Frequency);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;PCLK2_Frequency : %lu\n&quot;</span>, Get_RCC_Clocks.PCLK2_Frequency);</span><br></pre></td></tr></table></figure>
+
+<p>Clock frequencies are printed as:</p>
+<p>SYSCLK : 53760000</p>
+<p>HCLK_Frequency : 53760000</p>
+<p>PCLK1_Frequency : 13440000</p>
+<p>PCLK2_Frequency : 26880000</p>
+<p>It is evident that they do not match the default 168MHz.</p>
+<p>After research and consulting the library, the solution is obtained:</p>
+<ul>
+<li><p>File: stm32f4xx.h</p>
+</li>
+<li><pre><code class="c">#define HSE_VALUE    ((uint32_t)25000000) /*!&lt; Value of the External oscillator in Hz */
+
+--------&gt;
+
+#define HSE_VALUE    ((uint32_t)8000000) /*!&lt; Value of the External oscillator in Hz */
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Changing the default HSE to the actual HSE, where the external crystal on the development board is 8.0000M.</span><br><span class="line"></span><br><span class="line">- File: system_stmf4xx.c</span><br><span class="line"></span><br><span class="line">- ```c</span><br><span class="line">  /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */</span><br><span class="line">  #define PLL_M      25</span><br><span class="line">  </span><br><span class="line">  ---------&gt;</span><br><span class="line">  </span><br><span class="line">  /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */</span><br><span class="line">  #define PLL_M      8</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<hr>
+<p>2024&#x2F;2&#x2F;22</p>
+<p>泉水</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://moneeeeee.github.io/2024/02/29/HowtoCreateAPages/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -389,7 +512,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
