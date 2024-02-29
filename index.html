@@ -195,7 +195,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-02-29 21:41:42 / 修改时间：21:49:34" itemprop="dateCreated datePublished" datetime="2024-02-29T21:41:42+08:00">2024-02-29</time>
+              <time title="创建时间：2024-02-29 21:41:42 / 修改时间：21:54:29" itemprop="dateCreated datePublished" datetime="2024-02-29T21:41:42+08:00">2024-02-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,7 +268,7 @@
 <td align="left">文章关键字</td>
 </tr>
 </tbody></table>
-<p><img src="C:\Users\Monee\AppData\Roaming\Typora\typora-user-images\image-20240229212527390.png" alt="image-20240229212527390"></p>
+<p><img src="/2024/02/29/HowtoCreateAPages/image-20240229215110698.png" alt="image-20240229215110698"></p>
 <ul>
 <li><p>清除掉旧的数据:</p>
 <p><code>hexo clean</code></p>
@@ -289,6 +289,23 @@
 </blockquote>
 </li>
 </ul>
+<hr>
+<ul>
+<li><p>上传图片:直接粘贴图片,然后使用<code>&lt;C-f&gt;</code>快捷键，将所有的<code>文章名/</code>替换为空即可删除</p>
+<blockquote>
+<p>然后再将博客上传，图片就会随着文章一起打包。在网页中就可以看到正常显示的图片，大功告成。</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2024/02/29/HowtoCreateAPages/image-20240229215216054.png" alt="image-20240229215216054"></p>
+<hr>
+<p>为了方便，可以在<code>scaffolds -&gt; post</code>中添加如下设置。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">typora-root-url:</span> &#123;&#123; <span class="string">title</span> &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样每次执行hexo new命令新建文章的时候，会在Front Matter中自动添加该配置，如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typora-root-url: hexo图片显示问题</span><br></pre></td></tr></table></figure>
+
+<p>至此，在本地和服务器的图片都能正常预览。</p>
 
       
     </div>
